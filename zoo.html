@@ -43,16 +43,40 @@
         }
     }
 
-    let myAnimal = new Animal(2008, "Elephant", 1200, "male", "h44");
-    console.log(myAnimal.weight);
-    console.log(myAnimal.getAge());
+    let animals = [];
+    let birdSp = ["Canary", "Parrot", "Cockatoo", "Ostrich", "Pheasant"];
+    let monkeySp = ["Orang-utan", "Gorilla", "Chimpansee", "Maki", "Baboon"];
+    let mf = ["Male", "Female"];
+    let monkeyH = ["Trees", "Rocks"];
+    let monkeyV = ["Narrow Nosed", "Wide Nosed"];
+    let birdV = ["Bird of Prey", "Water Bird"];
 
-    let myKanarie = new Bird (2017, "Canary", 0.1, "male", "b12", 33, "bird of prey");
-    console.log(myKanarie.birdVariety);
-    console.log(myKanarie.getAge());
+    for (let i = 0; i<100; i++) {
+        let birdOrMonkey = Math.floor(Math.random() * 2);
+        let randomBirthYear = Math.floor(Math.random() * 20) + 1998;
+        let randomSpecies = Math.floor(Math.random() * 5);
+        let randomWeight =  Math.floor(Math.random() * 300) + 1;
+        let randomGender = Math.floor(Math.random() * 2);
+        let randomLocation = Math.floor(Math.random() * 300) + 1;
+        let randomHabitat = Math.floor(Math.random() * 2);
+        let randomVariety = Math.floor(Math.random() * 2);
+        let randomEggs = Math.floor(Math.random() * 20);
 
-    let myApe = new Monkey (2004, "Oerang Oetang", 230, "female", "m2", "tree", "wide nosed");
-    console.log(myApe.speciesName);
+        if (birdOrMonkey == 1) {
+            animals.push(new Bird(randomBirthYear, birdSp[randomSpecies], randomWeight/300, mf[randomGender], "Enclosure: " + randomLocation, randomEggs, birdV[randomVariety]));
+        } else {
+            animals.push(new Monkey(randomBirthYear, monkeySp[randomSpecies], randomWeight, mf[randomGender], "Enclosure: " + randomLocation, monkeyH[randomHabitat], monkeyV[randomVariety]));
+        }
+
+    }
+
+    
+   for (let i=0; i<100; i++) console.log(animals[i]);
+
+    // let myKanarie = new Bird (2017, "Canary", 0.1, "male", "b12", 33, "bird of prey");
+    // console.log(myKanarie.birdVariety);
+    // console.log(myKanarie.getAge());
+
     }
 
 </script>
