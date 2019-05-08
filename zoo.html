@@ -5,8 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zoo</title>
-</head>
-<body>
+
     
+
+</head>
+<body onload="startScript()">
+    
+<script>
+    function startScript() {
+
+    class Animal {
+        constructor (timeStamp, speciesName, weight, gender, location) {
+        this.timeStamp = timeStamp;
+        this.speciesName = speciesName;
+        this.weight = weight;
+        this.gender = gender;
+        this.location = location;
+        }
+    }
+
+    let myAnimal = new Animal(20042010, "Elephant", 1200, "male", "h44");
+    console.log(myAnimal.weight);
+
+    }
+</script>
+
 </body>
 </html>
