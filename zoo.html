@@ -15,17 +15,19 @@
     function startScript() {
 
     class Animal {
-        constructor (timeStamp, speciesName, weight, gender, location) {
-        this.timeStamp = timeStamp;
+        constructor (birthYear, speciesName, weight, gender, location) {
+        this.birthYear = birthYear;
         this.speciesName = speciesName;
         this.weight = weight;
         this.gender = gender;
         this.location = location;
+        this.age = (new Date().getFullYear()) - this.birthYear;
         }
     }
 
-    let myAnimal = new Animal(20042010, "Elephant", 1200, "male", "h44");
+    let myAnimal = new Animal(2008, "Elephant", 1200, "male", "h44");
     console.log(myAnimal.weight);
+    console.log(myAnimal.age);
 
     }
 </script>
