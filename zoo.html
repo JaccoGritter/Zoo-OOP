@@ -21,15 +21,40 @@
         this.weight = weight;
         this.gender = gender;
         this.location = location;
-        this.age = (new Date().getFullYear()) - this.birthYear;
+        }
+        getAge() {
+            return (new Date().getFullYear() - this.birthYear);
+        }
+    }
+
+    class Bird extends Animal {
+        constructor (birthYear, speciesName, weight, gender, location, numEggs, birdVariety){
+        super(birthYear, speciesName, weight, gender, location);
+        this.numEggs = numEggs;
+        this.birdVariety = birdVariety;
+        }
+    }
+
+    class Monkey extends Animal {
+        constructor (birthYear, speciesName, weight, gender, location, habitat, monkeyVariety){
+        super(birthYear, speciesName, weight, gender, location);
+        this.habitat = habitat;
+        this.monkeyVariety = monkeyVariety;
         }
     }
 
     let myAnimal = new Animal(2008, "Elephant", 1200, "male", "h44");
     console.log(myAnimal.weight);
-    console.log(myAnimal.age);
+    console.log(myAnimal.getAge());
 
+    let myKanarie = new Bird (2017, "Canary", 0.1, "male", "b12", 33, "bird of prey");
+    console.log(myKanarie.birdVariety);
+    console.log(myKanarie.getAge());
+
+    let myApe = new Monkey (2004, "Oerang Oetang", 230, "female", "m2", "tree", "wide nosed");
+    console.log(myApe.speciesName);
     }
+
 </script>
 
 </body>
