@@ -15,12 +15,12 @@
 
     class Animal {
         constructor (birthYear, speciesName, weight, gender, location) {
-        this.birthYear = birthYear;
-        this.speciesName = speciesName;
-        this.weight = weight;
-        this.gender = gender;
-        this.location = location;
-        }
+            this.birthYear = birthYear;
+            this.speciesName = speciesName;
+            this.weight = weight;
+            this.gender = gender;
+            this.location = location;
+            }
         getAge() {
             return (new Date().getFullYear() - this.birthYear);
         }
@@ -28,61 +28,67 @@
 
     class Bird extends Animal {
         constructor (birthYear, speciesName, weight, gender, location, numEggs, birdVariety){
-        super(birthYear, speciesName, weight, gender, location);
-        this.numEggs = numEggs;
-        this.birdVariety = birdVariety;
-        }
+            super(birthYear, speciesName, weight, gender, location);
+            this.numEggs = numEggs;
+            this.birdVariety = birdVariety;
+            }
     }
 
     class Monkey extends Animal {
         constructor (birthYear, speciesName, weight, gender, location, habitat, monkeyVariety){
-        super(birthYear, speciesName, weight, gender, location);
-        this.habitat = habitat;
-        this.monkeyVariety = monkeyVariety;
-        }
+            super(birthYear, speciesName, weight, gender, location);
+            this.habitat = habitat;
+            this.monkeyVariety = monkeyVariety;
+            }
     }
 
-    let animals = [];  // array which will contain all individual animals
-    let birdSp = ["Canary", "Parrot", "Cockatoo", "Ostrich", "Pheasant"];
-    let monkeySp = ["Orang-utan", "Gorilla", "Chimpansee", "Maki", "Baboon"];
-    let mf = ["Male", "Female"];
-    let monkeyH = ["Trees", "Rocks"];
-    let monkeyV = ["Narrow Nosed", "Wide Nosed"];
-    let birdV = ["Bird of Prey", "Water Bird"];
-
-    for (let i = 0; i<1000; i++) {
-        let birdOrMonkey = Math.floor(Math.random() * 2);
-        let randomBirthYear = Math.floor(Math.random() * 20) + 1998;
-        let randomSpecies = Math.floor(Math.random() * 5);
-        let randomWeight =  Math.floor(Math.random() * 300) + 1;
-        let randomGender = Math.floor(Math.random() * 2);
-        let randomLocation = Math.floor(Math.random() * 300) + 1;
-        let randomHabitat = Math.floor(Math.random() * 2);
-        let randomVariety = Math.floor(Math.random() * 2);
-        let randomEggs = Math.floor(Math.random() * 20);
-
-        if (birdOrMonkey == 1) {
-            animals.push(new Bird(randomBirthYear, birdSp[randomSpecies], (randomWeight/300).toFixed(2), mf[randomGender], "Enclosure: " + randomLocation, randomEggs, birdV[randomVariety]));
-        } else {
-            animals.push(new Monkey(randomBirthYear, monkeySp[randomSpecies], randomWeight, mf[randomGender], "Enclosure: " + randomLocation, monkeyH[randomHabitat], monkeyV[randomVariety]));
+    class Zoo {
+        constructor (zooName, numberOfAnimals) {
+            this.zooName = zooName;
+            this.numberOfAnimals = numberOfAnimals;
+            this.animals = [];  // array which will contain all individual animals
+            this.createAnimals(numberOfAnimals);
         }
 
+        getAnimals() {
+            return this.animals;
+        }
+
+        createAnimals(n){
+        let birdSp = ["Canary", "Parrot", "Cockatoo", "Ostrich", "Pheasant"];
+        let monkeySp = ["Orang-utan", "Gorilla", "Chimpansee", "Maki", "Baboon"];
+        let mf = ["Male", "Female"];
+        let monkeyH = ["Trees", "Rocks"];
+        let monkeyV = ["Narrow Nosed", "Wide Nosed"];
+        let birdV = ["Bird of Prey", "Water Bird"];
+
+        for (let i = 0; i<n; i++) {
+            let birdOrMonkey = Math.floor(Math.random() * 2);
+            let randomBirthYear = Math.floor(Math.random() * 20) + 1998;
+            let randomSpecies = Math.floor(Math.random() * 5);
+            let randomWeight =  Math.floor(Math.random() * 300) + 1;
+            let randomGender = Math.floor(Math.random() * 2);
+            let randomLocation = Math.floor(Math.random() * 300) + 1;
+            let randomHabitat = Math.floor(Math.random() * 2);
+            let randomVariety = Math.floor(Math.random() * 2);
+            let randomEggs = Math.floor(Math.random() * 20);
+
+            if (birdOrMonkey == 1) {
+                this.animals.push(new Bird(randomBirthYear, birdSp[randomSpecies], (randomWeight/300).toFixed(2), mf[randomGender], "Enclosure: " + randomLocation, randomEggs, birdV[randomVariety]));
+            } else {
+                this.animals.push(new Monkey(randomBirthYear, monkeySp[randomSpecies], randomWeight, mf[randomGender], "Enclosure: " + randomLocation, monkeyH[randomHabitat], monkeyV[randomVariety]));
+            }
+        }
+        
     }
 
-    for (let i=0; i<1000; i++) {
-        let x = document.createElement("P");
-        let t = document.createTextNode((Object.values(animals[i])));
-        x.appendChild(t);
-        document.body.appendChild(x);  
-    }
-
-    // for (let i=0; i<100; i++) console.log(animals[i]);
-
-    // let myKanarie = new Bird (2017, "Canary", 0.1, "male", "b12", 33, "bird of prey");
-    // console.log(myKanarie.birdVariety);
-    // console.log(myKanarie.getAge());
 
     }
+
+    myZoo = new Zoo("Noorder Dierenpark", 100);
+    console.log(myZoo.getAnimals());
+   
+}
 
 </script>
 
