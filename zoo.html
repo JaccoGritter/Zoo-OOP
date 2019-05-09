@@ -24,6 +24,7 @@
         getAge() {
             return (new Date().getFullYear() - this.birthYear);
         }
+
     }
 
     class Bird extends Animal {
@@ -32,6 +33,10 @@
             this.numEggs = numEggs;
             this.birdVariety = birdVariety;
             }
+            
+        move() {
+            console.log("flap flap");
+        }
     }
 
     class Monkey extends Animal {
@@ -40,18 +45,30 @@
             this.habitat = habitat;
             this.monkeyVariety = monkeyVariety;
             }
+        move() {
+            console.log("climbing...");
+        }
     }
 
     class Zoo {
         constructor (zooName, numberOfAnimals) {
             this.zooName = zooName;
             this.numberOfAnimals = numberOfAnimals;
+            this.maxVisitors = 5000;
             this.animals = [];  // array which will contain all individual animals
             this.createAnimals(numberOfAnimals);
         }
 
         getAnimals() {
             return this.animals;
+        }
+
+        getAnimal(n) {
+            return this.animals[n];
+        }
+
+        getNumberOfAnimals() {
+            return this.numberOfAnimals;
         }
 
         createAnimals(n){
@@ -87,6 +104,9 @@
 
     myZoo = new Zoo("Noorder Dierenpark", 100);
     console.log(myZoo.getAnimals());
+    console.log(myZoo.getAnimal(10));
+    myZoo.getAnimal(10).move();
+
    
 }
 
