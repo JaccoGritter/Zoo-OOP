@@ -1,21 +1,35 @@
 
 class Animal {
-    constructor (birthYear, speciesName, weight, gender, location) {
+    constructor (birthYear, speciesName, weight, gender, energyLevel) {
         this.birthYear = birthYear;
         this.speciesName = speciesName;
         this.weight = weight;
         this.gender = gender;
-        this.location = location;
+        this.energyLevel = energyLevel;
+        console.log(this.energyLevel);
+        this.myCounter = setInterval(this.energyCounter, 1000);
+        
         }
+
     getAge() {
         return (new Date().getFullYear() - this.birthYear);
     }
 
+    energyCounter() {
+        console.log(this.energyLevel);
+        
+        
+            if (this.energyLevel == 0) {
+                console.log(this.speciesName + " died...");
+                clearInterval();
+            }
+        }
+    
 }
 
 class Bird extends Animal {
-    constructor (birthYear, speciesName, weight, gender, location, numEggs, birdVariety){
-        super(birthYear, speciesName, weight, gender, location);
+    constructor (birthYear, speciesName, weight, gender, energyLevel, numEggs, birdVariety){
+        super(birthYear, speciesName, weight, gender, energyLevel);
         this.numEggs = numEggs;
         this.birdVariety = birdVariety;
         }
@@ -26,11 +40,12 @@ class Bird extends Animal {
 }
 
 class Monkey extends Animal {
-    constructor (birthYear, speciesName, weight, gender, location, habitat, monkeyVariety){
-        super(birthYear, speciesName, weight, gender, location);
+    constructor (birthYear, speciesName, weight, gender, energyLevel, habitat, monkeyVariety){
+        super(birthYear, speciesName, weight, gender, energyLevel);
         this.habitat = habitat;
         this.monkeyVariety = monkeyVariety;
         }
+
     move() {
         console.log("climbing...");
     }
@@ -55,7 +70,7 @@ class Zoo {
         return this.animals.length;
     }
 
-    createAnimals(n, newBorn){   // newBorn is a boolean to indicate if animal has just been born or not
+    createAnimals(n, newBorn){   // newBorn==true means new born animal
     let birdSp = ["Canary", "Parrot", "Cockatoo", "Ostrich", "Pheasant"];
     let monkeySp = ["Orang-utan", "Gorilla", "Chimpansee", "Maki", "Baboon"];
     let mf = ["Male", "Female"];
@@ -70,16 +85,16 @@ class Zoo {
             let randomSpecies = Math.floor(Math.random() * 5);
             let randomWeight =  newBorn ? Math.floor(Math.random() * 30) + 1: Math.floor(Math.random() * 300) + 1;
             let randomGender = Math.floor(Math.random() * 2);
-            let randomLocation = Math.floor(Math.random() * 300) + 1;
+            let randomenergyLevel = Math.floor(Math.random() * 100) + 1;
             let randomHabitat = Math.floor(Math.random() * 2);
             let randomVariety = Math.floor(Math.random() * 2);
             let randomEggs = newBorn ? 0 : Math.floor(Math.random() * 20);
 
             if (birdOrMonkey == 1) {
-                this.animals.push(new Bird(randomBirthYear, birdSp[randomSpecies], (randomWeight/100).toFixed(2), mf[randomGender], "Enclosure: " + randomLocation, randomEggs, birdV[randomVariety]));
-            } else {
-                this.animals.push(new Monkey(randomBirthYear, monkeySp[randomSpecies], randomWeight, mf[randomGender], "Enclosure: " + randomLocation, monkeyH[randomHabitat], monkeyV[randomVariety]));
-            }
+                this.animals.push(new Bird(randomBirthYear, birdSp[randomSpecies], (randomWeight/100).toFixed(2), mf[randomGender],randomenergyLevel, randomEggs, birdV[randomVariety]));
+                } else {
+                    this.animals.push(new Monkey(randomBirthYear, monkeySp[randomSpecies], randomWeight, mf[randomGender], randomenergyLevel, monkeyH[randomHabitat], monkeyV[randomVariety]));
+                }
         }
     
     }
@@ -88,7 +103,7 @@ class Zoo {
 }
 
 myZoo = new Zoo("Noorder Dierenpark");
-myZoo.createAnimals(1000, false);
+myZoo.createAnimals(1, false);
 myZoo.createAnimals(1, true);
 
 // console.log(myZoo.getAnimals());
@@ -103,4 +118,5 @@ myZoo.getAnimals().forEach(animal => {
 document.getElementById("noBirds").innerText = "Birds: " + numberOfBirds;
 document.getElementById("noMonkeys").innerText = "Monkeys: " + (myZoo.getNumberOfAnimals() - numberOfBirds);
 
-console.log(myZoo.getAnimal(500));
+//console.log(myZoo.getAnimal(1).energyLevel);
+
