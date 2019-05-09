@@ -14,3 +14,5 @@ Added statistics to html page
 
 Added possibility to have an animal being born with createAnimals(n, newBorn)
 If newBorn the year of birth will be the current year and number of eggs will be equal to zero (if bird)
+
+Moved JavaScript to external file
