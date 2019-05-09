@@ -9,6 +9,10 @@
 </head>
 
 <body onload="startScript()">
+
+    <div>Statistics:</div>
+    <div id = "noBirds"></div>
+    <div id = "noMonkeys"></div>
     
 <script>
     function startScript() {
@@ -102,10 +106,19 @@
 
     }
 
-    myZoo = new Zoo("Noorder Dierenpark", 100);
-    console.log(myZoo.getAnimals());
-    console.log(myZoo.getAnimal(10));
-    myZoo.getAnimal(10).move();
+    myZoo = new Zoo("Noorder Dierenpark", 1000);
+    // console.log(myZoo.getAnimals());
+    // console.log(myZoo.getAnimal(10));
+    // myZoo.getAnimal(10).move();
+
+    let numberOfBirds = 0;
+    myZoo.getAnimals().forEach(animal => {
+        if (animal instanceof Bird) numberOfBirds++; 
+    });
+
+    document.getElementById("noBirds").innerText = "Birds: " + numberOfBirds;
+    document.getElementById("noMonkeys").innerText = "Monkeys: " + (myZoo.getNumberOfAnimals() - numberOfBirds);
+
 
    
 }
