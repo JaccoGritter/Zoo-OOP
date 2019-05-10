@@ -6,8 +6,6 @@ class Animal {
         this.weight = weight;
         this.gender = gender;
         this.energyLevel = energyLevel;
-        console.log(this.energyLevel);
-        this.myCounter = setInterval(this.energyCounter, 1000);
         
         }
 
@@ -15,15 +13,14 @@ class Animal {
         return (new Date().getFullYear() - this.birthYear);
     }
 
-    energyCounter() {
-        console.log(this.energyLevel);
-        
-        
-            if (this.energyLevel == 0) {
-                console.log(this.speciesName + " died...");
-                clearInterval();
-            }
-        }
+    getEnergyLevel() {
+        return this.energyLevel;
+    }
+
+    setEnergyLevel(energy) {
+        this.energyLevel = energy;
+    }
+
     
 }
 
@@ -70,6 +67,19 @@ class Zoo {
         return this.animals.length;
     }
 
+    getNumberOfBirds() {
+        let numberOfBirds = 0;
+        this.getAnimals().forEach(animal => {
+            if (animal instanceof Bird) numberOfBirds++; 
+            });
+        return numberOfBirds;
+    }
+
+    getNumberOfMonkeys() {
+        return this.getNumberOfAnimals() - this.getNumberOfBirds();
+    }
+
+
     createAnimals(n, newBorn){   // newBorn==true means new born animal
     let birdSp = ["Canary", "Parrot", "Cockatoo", "Ostrich", "Pheasant"];
     let monkeySp = ["Orang-utan", "Gorilla", "Chimpansee", "Maki", "Baboon"];
@@ -103,20 +113,20 @@ class Zoo {
 }
 
 myZoo = new Zoo("Noorder Dierenpark");
-myZoo.createAnimals(1, false);
-myZoo.createAnimals(1, true);
+myZoo.createAnimals(1000, false);
+//myZoo.createAnimals(1, true);
 
-// console.log(myZoo.getAnimals());
-// console.log(myZoo.getAnimal(10));
-// myZoo.getAnimal(10).move();
+function showStatistics() {
+    document.getElementById("noBirds").innerText = "Birds: " + myZoo.getNumberOfBirds();
+    document.getElementById("noMonkeys").innerText = "Monkeys: " + myZoo.getNumberOfMonkeys();
+}
 
-let numberOfBirds = 0;
-myZoo.getAnimals().forEach(animal => {
-    if (animal instanceof Bird) numberOfBirds++; 
-});
+let x = setInterval(startZoo, 1000);
 
-document.getElementById("noBirds").innerText = "Birds: " + numberOfBirds;
-document.getElementById("noMonkeys").innerText = "Monkeys: " + (myZoo.getNumberOfAnimals() - numberOfBirds);
+function startZoo() {
+  
+    showStatistics();
+    myZoo.animals.pop();
 
-//console.log(myZoo.getAnimal(1).energyLevel);
 
+}
