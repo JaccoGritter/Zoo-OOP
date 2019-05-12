@@ -18,16 +18,37 @@
         background-color: rgba(60, 234, 240, 0.486);
     }
 
-    #button {
-        width: 20rem;
-        background-color: rgb(130, 243, 17);
+    .maincontainer {
+        display: flex;
     }
 
-    .container {
+    #button {
+        width: 10rem;
+        padding: 0.5rem;
+        background-color: rgb(130, 243, 17);
+        border: 2px solid black;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .statscontainer {
         width: 20rem;
         background-color: chartreuse;
         line-height: 2rem;
         font-size: 1.5rem; 
+    }
+
+    .stats {
+        padding: 0.3rem;
+    }
+
+    #deaths {
+        width: 10rem;
+        margin-left: 2rem;
+    }
+
+    #births {
+        width: 10rem;
     }
 
 </style>
@@ -36,12 +57,25 @@
 
 <body>
     <h1 id="zooName"></h1>
-    <div id="button">click me to start!</div><br>
-    <div #id = "info" class = "container">
-        <div class="stats">Statistics:</div>
-        <div id = "noBirds" class = "stats">0</div>
-        <div id = "noMonkeys" class = "stats">0</div>
-        <div id = "deaths" class = "stats">0</div>
+    
+    <div class="maincontainer">
+        <div>
+            <div id="button">click me to start!</div><br>
+            <div #id = "info" class = "statscontainer">
+                <div class="stats">Statistics:</div>
+                <div id = "noBirds" class = "stats">0</div>
+                <div id = "noMonkeys" class = "stats">0</div>
+                <div id = "deadAnimals" class = "stats">0</div>
+            </div>
+        </div>
+
+        <div id="deaths">
+            <p>Last 10 deaths:</p>
+        </div>
+
+        <div id="births">
+            <p>Births:</p>
+        </div>
     </div>
 
     <script src="zoo.js"></script>
