@@ -69,9 +69,12 @@ class Zoo {
 
     getNumberOfBirds() {
         let numberOfBirds = 0;
-        this.getAnimals().forEach(animal => {
-            if (animal instanceof Bird) numberOfBirds++; 
-            });
+        // this.getAnimals().forEach(animal => {
+        //     if (animal instanceof Bird) numberOfBirds++; 
+        //     });
+        this.getAnimals().forEach(function(animal) {
+              if (animal instanceof Bird) numberOfBirds++; 
+              });
         return numberOfBirds;
     }
 
@@ -109,11 +112,12 @@ class Zoo {
     
     }
 
-
 }
 
 myZoo = new Zoo("Noorder Dierenpark");
 myZoo.createAnimals(1000, false);
+let zooRunning = false;
+let runZoo;  // variable for timer
 //myZoo.createAnimals(1, true);
 
 function showStatistics() {
@@ -121,7 +125,22 @@ function showStatistics() {
     document.getElementById("noMonkeys").innerText = "Monkeys: " + myZoo.getNumberOfMonkeys();
 }
 
-let x = setInterval(startZoo, 1000);
+document.getElementById("button").addEventListener("click", start);
+
+function start() {
+    if (!zooRunning) {
+        runZoo = setInterval(startZoo, 1000);
+        document.getElementById("button").style.backgroundColor="red";
+        document.getElementById("button").innerText="Click me to pause!";
+        zooRunning = true;
+    }
+    else {
+        clearInterval(runZoo);
+        document.getElementById("button").style.backgroundColor="rgb(130, 243, 17)";
+        document.getElementById("button").innerText="Click me to re-start!";
+        zooRunning = false;
+    }
+}
 
 function startZoo() {
   

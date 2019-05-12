@@ -6,19 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zoo</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
     
+<style>
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgba(60, 234, 240, 0.486);
+    }
+
+    #button {
+        width: 20rem;
+        background-color: rgb(130, 243, 17);
+    }
+
+    .container {
+        width: 20rem;
+        background-color: chartreuse;
+        line-height: 2rem;
+        font-size: 1.5rem; 
+    }
+
+</style>
+
 </head>
 
 <body>
+    <h1>Mijn Dierentuin</h1>
+    <div id="button">click me to start!</div><br>
     <div #id = "info" class = "container">
-        <div class="rounded .bg-primary  col-lg-3 bg-primary">Statistics:</div>
-        <div id = "noBirds" class = "rounded col-lg-3 bg-warning">0</div>
-        <div id = "noMonkeys" class = "rounded col-lg-3 bg-warning">0</div>
-        <div id = "energy" class = "rounded col-lg-3 bg-warning">0</div>
+        <div class="stats">Statistics:</div>
+        <div id = "noBirds" class = "stats">0</div>
+        <div id = "noMonkeys" class = "stats">0</div>
+        <div id = "energy" class = "stats">0</div>
     </div>
 
     <script src="zoo.js"></script>
