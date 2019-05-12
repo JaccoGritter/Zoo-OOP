@@ -17,8 +17,16 @@ class Animal {
         return this.energyLevel;
     }
 
+    getSpeciesName() {
+        return this.speciesName;
+    }
+
     setEnergyLevel(energy) {
         this.energyLevel = energy;
+    }
+
+    live() {
+        this.energyLevel--;
     }
 
     
@@ -69,9 +77,6 @@ class Zoo {
 
     getNumberOfBirds() {
         let numberOfBirds = 0;
-        // this.getAnimals().forEach(animal => {
-        //     if (animal instanceof Bird) numberOfBirds++; 
-        //     });
         this.getAnimals().forEach(function(animal) {
               if (animal instanceof Bird) numberOfBirds++; 
               });
@@ -80,6 +85,10 @@ class Zoo {
 
     getNumberOfMonkeys() {
         return this.getNumberOfAnimals() - this.getNumberOfBirds();
+    }
+
+    getName() {
+        return this.zooName;
     }
 
 
@@ -120,6 +129,8 @@ let zooRunning = false;
 let runZoo;  // variable for timer
 //myZoo.createAnimals(1, true);
 
+document.getElementById("zooName").innerText = myZoo.getName();
+
 function showStatistics() {
     document.getElementById("noBirds").innerText = "Birds: " + myZoo.getNumberOfBirds();
     document.getElementById("noMonkeys").innerText = "Monkeys: " + myZoo.getNumberOfMonkeys();
@@ -130,7 +141,7 @@ document.getElementById("button").addEventListener("click", start);
 function start() {
     if (!zooRunning) {
         runZoo = setInterval(startZoo, 1000);
-        document.getElementById("button").style.backgroundColor="red";
+        document.getElementById("button").style.backgroundColor = "rgb(248, 166, 89)";
         document.getElementById("button").innerText="Click me to pause!";
         zooRunning = true;
     }
@@ -142,10 +153,24 @@ function start() {
     }
 }
 
+function animalsLive() {            // decreases animal energylevel
+    let animals = myZoo.getAnimals();
+    for(let i = 0; i < animals.length ; i++) {
+        animals[i].live(); 
+            if (animals[i].getEnergyLevel() == 0) {
+                console.log(animals[i].getSpeciesName() + " died");
+                
+            }
+        }
+}
+
+
+
 function startZoo() {
   
     showStatistics();
-    myZoo.animals.pop();
+    animalsLive();
+    
 
 
 }
