@@ -61,6 +61,7 @@ class Zoo {
         this.zooName = zooName;
         this.maxVisitors = 5000;
         this.animals = [];  // array which will contain all individual animals
+        this.deadAnimals = [];
     }
 
     getAnimals() {
@@ -89,6 +90,14 @@ class Zoo {
 
     getName() {
         return this.zooName;
+    }
+
+    getNumberOfDeadAnimals() {
+        return this.deadAnimals.length;
+    }
+
+    addDeadAnimal(animal) {
+        this.deadAnimals.push(animal);
     }
 
 
@@ -134,6 +143,7 @@ document.getElementById("zooName").innerText = myZoo.getName();
 function showStatistics() {
     document.getElementById("noBirds").innerText = "Birds: " + myZoo.getNumberOfBirds();
     document.getElementById("noMonkeys").innerText = "Monkeys: " + myZoo.getNumberOfMonkeys();
+    document.getElementById("deaths").innerText = "Animals dead: " + myZoo.getNumberOfDeadAnimals();
 }
 
 document.getElementById("button").addEventListener("click", start);
@@ -159,7 +169,7 @@ function animalsLive() {            // decreases animal energylevel
         animals[i].live(); 
             if (animals[i].getEnergyLevel() == 0) {
                 console.log(animals[i].getSpeciesName() + " died");
-                
+                myZoo.addDeadAnimal(animals.splice(i,1));        // add deceased animal to deadAnimal array
             }
         }
 }

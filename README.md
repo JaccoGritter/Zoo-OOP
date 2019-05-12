@@ -18,3 +18,10 @@ If newBorn the year of birth will be the current year and number of eggs will be
 Moved JavaScript to external file
 
 Created start/pause button to be able to (re)start and pause time
+
+Energy levels for each animal decreases and ate energyLevel = 0 animal is dead..
+
+Added array to Zoo class which contains the deceased animal objects
+Dead animal object is removed from animals array
+
+Added number of dead animals to statisticsS
