@@ -16,3 +16,5 @@ Added possibility to have an animal being born with createAnimals(n, newBorn)
 If newBorn the year of birth will be the current year and number of eggs will be equal to zero (if bird)
 
 Moved JavaScript to external file
+
+Created start/pause button to be able to (re)start and pause time
