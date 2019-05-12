@@ -137,18 +137,32 @@ let myZoo = new Zoo("Noorder Dierenpark");  // creates new zoo
 myZoo.createAnimals(1000, false);       // creates animals in zoo with newBorn = false
 let zooRunning = false;
 let runZoo;  // variable for timer
+
 let lastTenDead = new Array(10);
 lastTenDead.fill("alive", 0, 10);
+
+let lastTenBorn = new Array(10);
+lastTenBorn.fill(".", 0, 10);
 
 document.getElementById("zooName").innerText = myZoo.getName();
 
 //experimental
 for (let i = 0; i < 10; i++){
     let node = document.createElement("P");
-    let textnode = document.createTextNode(".");
+    let textnode = document.createTextNode("x");
     node.appendChild(textnode);
     document.getElementById("deaths").appendChild(node);
+    // document.getElementById("births").appendChild(node);
 }
+
+for (let i = 0; i < 10; i++){
+    let node = document.createElement("P");
+    let textnode = document.createTextNode("x");
+    node.appendChild(textnode);
+    //document.getElementById("deaths").appendChild(node);
+    document.getElementById("births").appendChild(node);
+}
+
 
 function showStatistics() {
     document.getElementById("noBirds").innerText = "Birds: " + myZoo.getNumberOfBirds();
@@ -158,6 +172,11 @@ function showStatistics() {
     //experimental code beneath
     for (let i = 0; i < 10; i++){
         document.getElementById("deaths").childNodes[i+3].innerText = lastTenDead[i];
+    }
+
+    for (let i = 0; i < 10; i++){
+        //console.log(lastTenBorn[i]);
+        document.getElementById("births").childNodes[i+3].innerText = lastTenBorn[i];
     }
 
 }
@@ -192,12 +211,22 @@ function animalsLive() {                                        // decreases ani
         }
 }
 
+function animalsBeBorn() {
+    myZoo.createAnimals(1, true);
+    let animals = myZoo.getAnimals();
+    lastTenBorn.splice(0,1);
+    lastTenBorn.push(animals[myZoo.getNumberOfAnimals()-1].getSpeciesName());
+    //console.log(getNumberOfAnimals + "-" + animals[myZoo.getNumberOfAnimals()].getSpeciesName());
+    //console.log( animals[myZoo.getNumberOfAnimals()-1] );
+}
+
 
 
 function startZoo() {
   
     showStatistics();
     animalsLive();
+    animalsBeBorn();
     
 
 
