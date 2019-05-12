@@ -27,3 +27,6 @@ Dead animal object is removed from animals array
 Added number of dead animals to statistics
 
 Last ten deaths are shown on webpage
+
+Animals are being born now
+Last ten births are shown on webpage
