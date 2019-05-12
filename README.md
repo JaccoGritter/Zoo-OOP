@@ -24,4 +24,6 @@ Energy levels for each animal decreases and ate energyLevel = 0 animal is dead..
 Added array to Zoo class which contains the deceased animal objects
 Dead animal object is removed from animals array
 
-Added number of dead animals to statisticsS
+Added number of dead animals to statistics
+
+Last ten deaths are shown on webpage
