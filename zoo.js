@@ -1,3 +1,4 @@
+"use strict"
 
 class Animal {
     constructor (birthYear, speciesName, weight, gender, energyLevel) {
@@ -132,18 +133,33 @@ class Zoo {
 
 }
 
-myZoo = new Zoo("Noorder Dierenpark");
-myZoo.createAnimals(1000, false);
+let myZoo = new Zoo("Noorder Dierenpark");  // creates new zoo 
+myZoo.createAnimals(1000, false);       // creates animals in zoo with newBorn = false
 let zooRunning = false;
 let runZoo;  // variable for timer
-//myZoo.createAnimals(1, true);
+let lastTenDead = new Array(10);
+lastTenDead.fill("alive", 0, 10);
 
 document.getElementById("zooName").innerText = myZoo.getName();
+
+//experimental
+for (let i = 0; i < 10; i++){
+    let node = document.createElement("P");
+    let textnode = document.createTextNode(".");
+    node.appendChild(textnode);
+    document.getElementById("deaths").appendChild(node);
+}
 
 function showStatistics() {
     document.getElementById("noBirds").innerText = "Birds: " + myZoo.getNumberOfBirds();
     document.getElementById("noMonkeys").innerText = "Monkeys: " + myZoo.getNumberOfMonkeys();
-    document.getElementById("deaths").innerText = "Animals dead: " + myZoo.getNumberOfDeadAnimals();
+    document.getElementById("deadAnimals").innerText = "Animals dead: " + myZoo.getNumberOfDeadAnimals();
+
+    //experimental code beneath
+    for (let i = 0; i < 10; i++){
+        document.getElementById("deaths").childNodes[i+3].innerText = lastTenDead[i];
+    }
+
 }
 
 document.getElementById("button").addEventListener("click", start);
@@ -163,12 +179,14 @@ function start() {
     }
 }
 
-function animalsLive() {            // decreases animal energylevel
+function animalsLive() {                                        // decreases animals energylevel
     let animals = myZoo.getAnimals();
     for(let i = 0; i < animals.length ; i++) {
         animals[i].live(); 
             if (animals[i].getEnergyLevel() == 0) {
-                console.log(animals[i].getSpeciesName() + " died");
+                
+                lastTenDead.splice(0,1);
+                lastTenDead.push(animals[i].getSpeciesName());
                 myZoo.addDeadAnimal(animals.splice(i,1));        // add deceased animal to deadAnimal array
             }
         }
